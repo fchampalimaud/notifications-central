@@ -1,0 +1,3 @@
+from .usernotifications_conf import UserNotificationsConfApp
+from .notifications_types import NotificationsTypesApp
+from .notifications import NotificationsApp

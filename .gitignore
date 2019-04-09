@@ -1,0 +1,4 @@
+
+*.pyc
+
+notifications_central\.egg-info/
