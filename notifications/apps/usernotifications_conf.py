@@ -8,9 +8,9 @@ class UserNotificationsConfApp(ModelAdminWidget):
     MODEL = UserNotificationConf
 
 
-    LIST_DISPLAY = ['user', 'notification_type', 'send_email', 'wait_send']
+    LIST_DISPLAY = ['user', 'notification_type', 'period']
 
-    LIST_FILTER = ['user', 'notification_type', 'send_email']
+    LIST_FILTER = ['user', 'notification_type', 'period']
 
     TITLE = 'Users notifications'
 
@@ -21,7 +21,7 @@ class UserNotificationsConfApp(ModelAdminWidget):
     ORQUESTRA_MENU_ORDER = 0
 
     FIELDSETS = [
-        ('send_email', 'wait_send'),
+        'period',
         ('user', 'notification_type'),
 
     ]

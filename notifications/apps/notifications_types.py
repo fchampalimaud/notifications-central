@@ -8,9 +8,9 @@ class NotificationsTypesApp(ModelAdminWidget):
     MODEL = NotificationType
 
     SEARCH_FIELDS = ['code__icontains', 'label__icontains']
-    LIST_DISPLAY = ['active', 'code', 'label', 'notify_always', 'delay_send']
+    LIST_DISPLAY = ['code', 'label', 'period']
 
-    LIST_FILTER = ['active', 'notify_always']
+    LIST_FILTER = ['period']
 
     TITLE = 'Notifications types'
 
@@ -21,7 +21,6 @@ class NotificationsTypesApp(ModelAdminWidget):
     ORQUESTRA_MENU_ORDER = 0
 
     FIELDSETS = [
-        'active',
-        ('code', 'label'),
-        ('notify_always', 'delay_send')
+        'period',
+        ('code', 'label')
     ]

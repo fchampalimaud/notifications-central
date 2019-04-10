@@ -1,4 +1,4 @@
-from ..models import NotificationType, Notification
+from ..models import NotificationType, Notification, UserNotificationConf
 
 def notify(code, title, text, user=None):
 
