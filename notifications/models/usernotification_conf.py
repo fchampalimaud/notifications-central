@@ -3,7 +3,7 @@ from django.db import models
 class UserNotificationConf(models.Model):
 
     PERIODS = (
-        ('N', 'Send immediately'),
+        ('I', 'Send immediately'),
         ('D', 'Wait one day'),
         ('W', 'Wait one week'),
         ('M', 'Wait one month')

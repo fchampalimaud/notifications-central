@@ -8,5 +8,9 @@ def notify(code, title, text, user=None):
         ntype = NotificationType(code=code, label=code)
         ntype.save()
 
+    # don't register the notification if is not active
+    if not ntype.active:
+        return
+
     notification = Notification(label=title, text=text, user=user, notification_type=ntype)
     notification.save()
