@@ -8,9 +8,9 @@ class NotificationsApp(ModelAdminWidget):
     MODEL = Notification
 
     SEARCH_FIELDS = ['label__icontains', 'text__icontains']
-    LIST_DISPLAY = ['label', 'user', 'receivedon', 'readon', 'senton']
+    LIST_DISPLAY = ['label', 'user', 'created_on', 'read_on', 'sent_on', 'period']
 
-    LIST_FILTER = ['notification_type__label', 'user', 'receivedon']
+    LIST_FILTER = ['notification_type__label', 'user', 'created_on', 'period']
 
     TITLE = 'Notifications'
 
@@ -24,5 +24,6 @@ class NotificationsApp(ModelAdminWidget):
         'label',
         'text',
         'user',
-        ('receivedon', 'readon', 'senton')
+        'period',
+        ('created_on', 'read_on', 'sent_on')
     ]

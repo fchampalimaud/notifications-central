@@ -10,6 +10,7 @@ class NotificationType(models.Model):
         ('M', 'Monthly')
     )
 
+    active = models.BooleanField('Active', default=True)
     code   = models.CharField('Code', max_length=100, unique=True)
     label  = models.CharField('Title', max_length=255)
     period = models.CharField('When to send the email', choices=PERIODS, max_length=1)

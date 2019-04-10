@@ -21,6 +21,9 @@ class Notification(models.Model):
 
 
     def save(self, *args, **kwargs):
+        if not self.notification_type.active:
+            return None
+
         try:
             ntypeconf = UserNotificationConf.objects.get(
                 notification_type=self.notification_type, user=self.user
@@ -39,4 +42,4 @@ class Notification(models.Model):
             except Exception:
                 traceback.print_exc()
 
-        super().save(*args, **kwargs)
+        return super().save(*args, **kwargs)
