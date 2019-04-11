@@ -28,7 +28,7 @@ from notifications.tools import notify
 
 ...
 
-notify('UNIQUE CODE OF THE NOTIFICATION', msg_subject, msg_text, user=user_to_send)
+notify('NOTIFICATION UNIQUE CODE', msg_subject, msg_text, user=user_to_send)
 
 ```
 
@@ -59,11 +59,17 @@ Access all the users notifications:
 
 #### Users
 
+Ordinary users, will see a icon with the unread notifications on the top menu.
+
 ![Configure notifications](docs/images/notifications-icon.png)
 
 
+To view the notifications users can click in the notifications icon, and select the notifications in the list.
+
 ![Configure notifications](docs/images/notifications-app.png)
 
+
+To edit the notifications grouping, users can do it by clicking in the cog, and selecting the period when they what to receive each type of notification.
 
 ![Configure notifications](docs/images/notifications-config.png)
 
