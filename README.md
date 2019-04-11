@@ -1,7 +1,7 @@
 # Notification central
 
 
-This module manages the user email notifications and aims to reduce the amount of emails sent to the users.
+This module manages the users email notifications and aims to reduce the amount of emails sent.
 Users can now group their notifications on a single email that can be send daily, weekly or monthly. 
 
 ##How to configure
@@ -20,8 +20,8 @@ INSTALLED_APPS = [
 ### In the code
 
 Use the next code to notify the user about something. 
-Then depending on how the notification is configured the user will receive it immediately by email,
-or will receive it later in group with other notifications.
+Then depending on how the notification is configured the user will receive the message immediately by email,
+or later in grouped with other messages.
 
 ```python
 from notifications.tools import notify
@@ -37,17 +37,17 @@ notify('NOTIFICATION UNIQUE CODE', msg_subject, msg_text, user=user_to_send)
 
 ####Superuser view
 
-The super user will see in its area the next menu:
+Menu seen by the superuser:
 
 ![Superuser menu](docs/images/superuser-menu.png)
 
-The superuser can configure the next options of the notifications:
+The superuser can configure the next options for the notifications:
 
 - Set the default time when each notification type should be send.
-- Activate or deactivate the notifications. In the case a notification type is not active, the messages will not be registered).
+- Activate or deactivate the notifications. In case a notification type is disabled, the messages are not going to be registered.
 - Set the notifications unique code.
-- Set the notifications label (Used to send to the user).
-- Set a flag that avoid the user to be notified multiple times about the same message.
+- Set the notifications label (Label shown to the user).
+- Set a flag that avoid the user to be notified multiple times with the same message.
 
 ![Configure notifications](docs/images/superuser-notificationstypes.png)
 
@@ -69,7 +69,7 @@ To view the notifications users can click in the notifications icon, and select 
 ![Configure notifications](docs/images/notifications-app.png)
 
 
-To edit the notifications grouping, users can do it by clicking in the cog, and selecting the period when they what to receive each type of notification.
+Users configuring the notifications grouping by clicking in the cog, and selecting the period when they would like to receive each type of notification.
 
 ![Configure notifications](docs/images/notifications-config.png)
 
