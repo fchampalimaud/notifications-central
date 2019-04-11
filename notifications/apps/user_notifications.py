@@ -58,7 +58,7 @@ class UserNotificationsApp(ModelAdminWidget):
     EDITFORM_CLASS = ViewUserNotification
 
     ORQUESTRA_MENU = 'top'
-    ORQUESTRA_MENU_ORDER = 0
+    ORQUESTRA_MENU_ORDER = 1
 
     USE_DETAILS_TO_EDIT = False
 
