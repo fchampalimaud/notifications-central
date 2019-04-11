@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+    <style type="text/css">
+        .main-body {
+            background-color: #f5f5f5;
+            margin: 0px;
+            padding: 0px;
+            font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .main-body a {
+            color: #0099ff;
+            text-decoration: none;
+        }
+
+        .main-body h1 {
+            font-size: 30px;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        .main-body h2 {
+            color: #666;
+            font-size: 18px;
+            text-align: right;
+        }
+
+        .main-body h3 {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 3px;
+            margin-top: 3px;
+
+            border: none;
+            padding: 0 0;
+            font-weight: 700;
+            line-height: 1.28571429em;
+            text-transform: none;
+            color: rgba(0, 0, 0, .87);
+        }
+
+
+        .main-body .page {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 800px;
+            background-color: white;
+            border: 1px solid #d3d7d9;
+            padding: 20px
+        }
+
+        .main-body .msg {
+            margin-top: 30px;
+        }
+
+        .main-body .footer {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            vertical-align: middle
+        }
+
+        .main-body .text {
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: stretch;
+            -ms-flex-align: stretch;
+            align-items: stretch;
+            max-width: initial;
+            -webkit-animation: none;
+            animation: none;
+            overflow: visible;
+            padding: 1em 1em;
+            background: #f9fafb;
+            border-color: rgba(34, 36, 38, .15);
+            -webkit-box-shadow: 0 2px 25px 0 rgba(34, 36, 38, .05) inset;
+            box-shadow: 0 2px 25px 0 rgba(34, 36, 38, .05) inset;
+
+            -webkit-box-shadow: 0 1px 2px 0 rgba(34, 36, 38, .15);
+            box-shadow: 0 1px 2px 0 rgba(34, 36, 38, .15);
+            margin: 0rem 0;
+            padding: 1em 1em;
+            border-radius: .28571429rem;
+            border: 1px solid rgba(34, 36, 38, .15);
+        }
+
+        .main-body .date {
+            font-size: 10pt;
+            color: rgba(0, 0, 0, .4);
+        }
+    </style>
+</head>
+<body>
+<div class="main-body">
+    <div class="page">
+        <a style="text-decoration:none" href="http://core.champalimaud.pt/" target="_blank">
+            <h1>CORE NOTIFICATIONS</h1>
+        </a>
+
+        <div>
+            {% for title, messages in notifications %}
+                <h2>{{ title }}</h2>
+                <div class="section">
+                    {% for msg in messages %}
+                        <div class="msg">
+                            <div class="date">{{ msg.created_on|date:'Y-m-d H:i' }}</div>
+                            <h3>
+                                {{ msg.label }}
+                            </h3>
+                            <div class="text">{{ msg.text|safe }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="footer">
+            Please send an email to
+            <a href="mailto:software@research.fchampalimaud.org">software@research.fchampalimaud.org</a>
+            if you are not entitled to see this message.
+        </div>
+    </div>
+
+    <div class="footer">
+        <a href="http://tech-teams.org/" target="_blank">
+            <img style="vertical-align:middle" src="https://funding.fchampalimaud.org/static/img/swp-logo-black.png">
+            &nbsp;&nbsp;
+            Developed by the &nbsp;<b>Scientific Software Platform</b>
+        </a>
+    </div>
+</body>
+</html>

@@ -21,5 +21,5 @@ setup(
     author_email='ricardo.ribeiro@research.fchampalimaud.org',
     license='MIT',
     packages=['notifications'],
-
+    include_package_data=True,
 )

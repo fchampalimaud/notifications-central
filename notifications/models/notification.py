@@ -1,15 +1,14 @@
-import traceback
-from django.utils import timezone
-from django.core.mail import EmailMessage
+import hashlib
 from django.db import models
-from django.conf import settings
 from .notification_type import NotificationType
-from .usernotification_conf import UserNotificationConf
+
 
 class Notification(models.Model):
 
     label = models.CharField('Title', max_length=255)
     text  = models.TextField('Description')
+
+    text_hash = models.CharField('Hash', max_length=255, null=True, blank=True, db_index=True)
 
     notification_type = models.ForeignKey('NotificationType', on_delete=models.CASCADE, default=1)
     user       = models.ForeignKey('auth.User', null=True, blank=True, on_delete=models.CASCADE)
@@ -19,27 +18,12 @@ class Notification(models.Model):
 
     period = models.CharField('When to send the email', choices=NotificationType.PERIODS, max_length=1)
 
-
     def save(self, *args, **kwargs):
-        if not self.notification_type.active:
-            return None
+        if self.pk is None:
+            self.text_hash = self.hash_text(self.text.encode())
+        super().save(*args, **kwargs)
 
-        try:
-            ntypeconf = UserNotificationConf.objects.get(
-                notification_type=self.notification_type, user=self.user
-            )
-            self.period = ntypeconf.period
-        except UserNotificationConf.DoesNotExist:
-            self.period = self.notification_type.period
 
-        if self.period=='I' and self.user.email:
-            try:
-                msg = EmailMessage( self.label, self.text, settings.DEFAULT_FROM_EMAIL, self.user.email)
-                msg.content_subtype = "html"
-                msg.send()
-                self.sent_on = timezone.now()
-                super().save(*args, **kwargs)
-            except Exception:
-                traceback.print_exc()
-
-        return super().save(*args, **kwargs)
+    @staticmethod
+    def hash_text(text):
+        return hashlib.sha224(text).hexdigest()

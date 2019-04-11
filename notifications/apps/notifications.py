@@ -1,6 +1,25 @@
-from pyforms_web.widgets.django import ModelAdminWidget
+from pyforms_web.widgets.django import ModelAdminWidget, ModelViewFormWidget
 from ..models import Notification
 from confapp import conf
+from pyforms.controls import ControlHtml
+
+class ViewNotification(ModelViewFormWidget):
+    MODEL = Notification
+
+    LAYOUT_POSITION = conf.ORQUESTRA_NEW_WINDOW
+
+    AUTHORIZED_GROUPS = ['superuser']
+
+    FIELDSETS = [
+        'label',
+        'text',
+        ('user', 'period', 'created_on', 'read_on', 'sent_on')
+    ]
+
+    def __init__(self, *args, **kwargs):
+        self.text = ControlHtml('Message')
+        super().__init__(*args, **kwargs)
+
 
 class NotificationsApp(ModelAdminWidget):
 
@@ -16,14 +35,24 @@ class NotificationsApp(ModelAdminWidget):
 
     LAYOUT_POSITION = conf.ORQUESTRA_HOME
 
-    ORQUESTRA_MENU = 'top'
-    ORQUESTRA_MENU_ICON = 'desktop'
-    ORQUESTRA_MENU_ORDER = 0
+    USE_DETAILS_TO_EDIT = False
+    EDITFORM_CLASS = ViewNotification
 
-    FIELDSETS = [
-        'label',
-        'text',
-        'user',
-        'period',
-        ('created_on', 'read_on', 'sent_on')
-    ]
+    ORQUESTRA_MENU = 'middle-left'
+    ORQUESTRA_MENU_ICON = 'bell blue'
+    ORQUESTRA_MENU_ORDER = 0
+    
+    
+    AUTHORIZED_GROUPS = ['superuser']
+
+
+
+
+    def has_add_permissions(self):
+        return False
+
+    def has_remove_permissions(self, obj):
+        return False
+
+    def has_update_permissions(self, obj):
+        return False

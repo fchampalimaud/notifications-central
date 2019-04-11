@@ -16,8 +16,8 @@ class UserNotificationsConfApp(ModelAdminWidget):
 
     LAYOUT_POSITION = conf.ORQUESTRA_HOME
 
-    ORQUESTRA_MENU = 'top'
-    ORQUESTRA_MENU_ICON = 'desktop'
+    ORQUESTRA_MENU = 'middle-left>NotificationsApp'
+    ORQUESTRA_MENU_ICON = 'database'
     ORQUESTRA_MENU_ORDER = 0
 
     FIELDSETS = [
@@ -25,3 +25,5 @@ class UserNotificationsConfApp(ModelAdminWidget):
         ('user', 'notification_type'),
 
     ]
+
+    AUTHORIZED_GROUPS = ['superuser']
