@@ -10,9 +10,9 @@ class NotificationsTypesApp(ModelAdminWidget):
     AUTHORIZED_GROUPS = ['superuser']
 
     SEARCH_FIELDS = ['code__icontains', 'label__icontains']
-    LIST_DISPLAY = ['code', 'label', 'period', 'active']
+    LIST_DISPLAY = ['code', 'label', 'period', 'active', 'once']
 
-    LIST_FILTER = ['period', 'active']
+    LIST_FILTER = ['period', 'active', 'once']
 
     TITLE = 'Notifications types'
 
@@ -23,6 +23,6 @@ class NotificationsTypesApp(ModelAdminWidget):
     ORQUESTRA_MENU_ORDER = 0
 
     FIELDSETS = [
-        ('active', 'period'),
+        ('active', 'once','period'),
         ('code', 'label')
     ]

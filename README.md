@@ -19,12 +19,16 @@ INSTALLED_APPS = [
 
 ### In the code
 
+Use the next code to notify the user about something. 
+Then depending on how the notification is configured the user will receive it immediately by email,
+or will receive it later in group with other notifications.
+
 ```python
 from notifications.tools import notify
 
 ...
 
-notify('CODE OF THE NOTIFICATION', msg_subject, msg_text, user=user_to_send)
+notify('UNIQUE CODE OF THE NOTIFICATION', msg_subject, msg_text, user=user_to_send)
 
 ```
 
@@ -33,12 +37,25 @@ notify('CODE OF THE NOTIFICATION', msg_subject, msg_text, user=user_to_send)
 
 ####Superuser view
 
+The super user will see in its area the next menu:
+
 ![Superuser menu](docs/images/superuser-menu.png)
 
+The superuser can configure the next options of the notifications:
+
+- Set the default time when each notification type should be send.
+- Activate or deactivate the notifications. In the case a notification type is not active, the messages will not be registered).
+- Set the notifications unique code.
+- Set the notifications label (Used to send to the user).
+- Set a flag that avoid the user to be notified multiple times about the same message.
+
+![Configure notifications](docs/images/superuser-notificationstypes.png)
+
+Access all the users notifications:
 
 ![All users notifications](docs/images/superuser-allnotifications.png)
 
-![Configure notifications](docs/images/superuser-notificationstypes.png)
+
 
 #### Users
 
