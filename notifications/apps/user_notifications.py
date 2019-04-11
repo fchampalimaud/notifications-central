@@ -62,6 +62,8 @@ class UserNotificationsApp(ModelAdminWidget):
 
     USE_DETAILS_TO_EDIT = False
 
+    LIST_ROWS_PER_PAGE = 15
+
 
     def __init__(self, *args, **kwargs):
 

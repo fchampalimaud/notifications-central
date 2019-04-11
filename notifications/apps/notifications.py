@@ -45,6 +45,7 @@ class NotificationsApp(ModelAdminWidget):
     
     AUTHORIZED_GROUPS = ['superuser']
 
+    LIST_ROWS_PER_PAGE = 15
 
 
 
