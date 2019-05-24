@@ -5,12 +5,26 @@ from django.utils import timezone
 from django.core.mail import EmailMessage
 from django.conf import settings
 
-def notify(code, title, text, user=None):
+def notify(code, title, text, user=None, visible=True, label=None, period=None):
+    """
+    Send a notification to the user. If the type notification does not exists, create it.
+
+    :param str code: Unique code of the notification.
+    :param str title: Title of the message.
+    :param str text: Body of the message.
+    :param auth.User user: User to notify.
+    :param bool visible: Show or Hide the configuration of the type of notification from the user.
+    :param str label: Description of the type of notification.
+    :param NotificationType.PERIODS period: By default who the notification should be configured.
+    :return: None
+    """
 
     try:
         ntype = NotificationType.objects.get(code=code)
     except NotificationType.DoesNotExist:
-        ntype = NotificationType(code=code, label=code)
+        ntype = NotificationType(code=code, label=label if label else code, visible=visible, active=True)
+        if period:
+            ntype.period = period
         ntype.save()
 
     # don't register the notification if is not active
