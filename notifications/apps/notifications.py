@@ -40,7 +40,7 @@ class NotificationsApp(ModelAdminWidget):
 
     ORQUESTRA_MENU = 'middle-left'
     ORQUESTRA_MENU_ICON = 'bell blue'
-    ORQUESTRA_MENU_ORDER = 0
+    ORQUESTRA_MENU_ORDER = 1000
     
     
     AUTHORIZED_GROUPS = ['superuser']

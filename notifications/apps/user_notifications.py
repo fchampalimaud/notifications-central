@@ -47,7 +47,8 @@ class UserNotificationsApp(ModelAdminWidget):
     MODEL = Notification
 
     SEARCH_FIELDS = ['label__icontains', 'text__icontains']
-    LIST_DISPLAY = ['label', 'created_on', 'read_on', 'sent_on']
+    LIST_DISPLAY  = ['label', 'created_on', 'read_on', 'sent_on']
+    LIST_HEADERS = ['Title', 'Created on', 'Read on', 'Sent on']
 
     LIST_FILTER = ['created_on']
 
@@ -58,7 +59,7 @@ class UserNotificationsApp(ModelAdminWidget):
     EDITFORM_CLASS = ViewUserNotification
 
     ORQUESTRA_MENU = 'top'
-    ORQUESTRA_MENU_ORDER = 1
+    ORQUESTRA_MENU_ORDER = 1000
 
     USE_DETAILS_TO_EDIT = False
 
