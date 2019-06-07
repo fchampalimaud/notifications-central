@@ -4,16 +4,36 @@
 This module manages the users email notifications and aims to reduce the amount of emails sent.
 Users can now group their notifications on a single email that can be send daily, weekly or monthly. 
 
-##How to configure
+##Install and configure
 
-Add the module to the installed apps in django settings, and execute the migration command.
+1. Clone the repository and install the app using pip.
 
-```python
-INSTALLED_APPS = [
-    'notifications',
-    ...
-]
-```
+    ```shell
+    > pip install notifications-central
+    ```
+
+2. Add the module to the installed apps in django settings, and execute the migration command.
+
+    ```python
+    INSTALLED_APPS = [
+        'notifications',
+        ...
+    ]
+    ```
+
+3. Call Django migrations
+
+    ```shell
+    > python manage.py migrate
+    ```
+    
+4. Configure Crontab to schedule the send of emails for each period.
+
+    ```shell
+        00 8 * * * python manage.py send_notifications D
+        00 8 * * MON python manage.py send_notifications W
+        00 8 1 * * python manage.py send_notifications M
+    ```
 
 ##How it works
 
