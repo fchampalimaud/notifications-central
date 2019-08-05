@@ -1,5 +1,8 @@
 import hashlib
+
+from django.conf import settings
 from django.db import models
+
 from .notification_type import NotificationType
 
 
@@ -11,7 +14,7 @@ class Notification(models.Model):
     text_hash = models.CharField('Hash', max_length=255, null=True, blank=True, db_index=True)
 
     notification_type = models.ForeignKey('NotificationType', on_delete=models.CASCADE, default=1)
-    user       = models.ForeignKey('auth.User', null=True, blank=True, on_delete=models.CASCADE)
+    user       = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.CASCADE)
     created_on = models.DateTimeField('Created on', auto_now_add=True)
     read_on    = models.DateTimeField('Read on', null=True, blank=True)
     sent_on    = models.DateTimeField('Sent on', null=True, blank=True)
