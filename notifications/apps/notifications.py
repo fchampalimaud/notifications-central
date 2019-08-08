@@ -38,9 +38,9 @@ class NotificationsApp(ModelAdminWidget):
     USE_DETAILS_TO_EDIT = False
     EDITFORM_CLASS = ViewNotification
 
-    ORQUESTRA_MENU = 'middle-left'
-    ORQUESTRA_MENU_ICON = 'bell blue'
-    ORQUESTRA_MENU_ORDER = 1000
+    ORQUESTRA_MENU = 'top'
+    ORQUESTRA_MENU_ICON = 'red bell'
+    ORQUESTRA_MENU_ORDER = 10000
     
     
     AUTHORIZED_GROUPS = ['superuser']
