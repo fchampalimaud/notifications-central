@@ -18,7 +18,7 @@ class NotificationsTypesApp(ModelAdminWidget):
 
     LAYOUT_POSITION = conf.ORQUESTRA_HOME
 
-    ORQUESTRA_MENU = 'middle-left>NotificationsApp'
+    ORQUESTRA_MENU = 'top>NotificationsApp'
     ORQUESTRA_MENU_ICON = 'database'
     ORQUESTRA_MENU_ORDER = 0
 
