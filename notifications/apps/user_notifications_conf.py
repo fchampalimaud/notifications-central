@@ -1,29 +1,43 @@
-from pyforms.basewidget import BaseWidget
-from notifications.models import NotificationType, UserNotificationConf
-from pyforms.controls import ControlCombo
-from confapp import conf
-from pyforms_web.utils import make_lambda_func
 import traceback
+
+from confapp import conf
+from pyforms.basewidget import BaseWidget
+from pyforms.controls import ControlCombo
+from pyforms_web.utils import make_lambda_func
 from pyforms_web.web.middleware import PyFormsMiddleware
 
-class UserNotificationsConfigApp(BaseWidget):
+from ..models import NotificationType, UserNotificationConf
 
-    TITLE = 'Configure your notifications'
+
+class UserNotificationsConfigApp(BaseWidget):
+    """
+    Allow users to configure which notifications they receive and when.
+    """
+
+    TITLE = "Configure your notifications"
 
     LAYOUT_POSITION = conf.ORQUESTRA_NEW_WINDOW
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.formset = ['info:Group your notifications by the frequency you want to received them.']
+        self.formset = [
+            "info:Group your notifications by the frequency you want to received them."
+        ]
 
-        PERIODS = [ (n,c) for c,n in NotificationType.PERIODS]
+        PERIODS = [(n, c) for c, n in NotificationType.PERIODS]
 
         user = PyFormsMiddleware.user()
 
-        for n in NotificationType.objects.filter(active=True, visible=True).order_by('code'):
-            field_name = 'period_{0}'.format(n.pk)
-            field = ControlCombo(n.label, items=PERIODS, changed_event=make_lambda_func(self.configure, notification_pk=n.pk) )
+        for n in NotificationType.objects.filter(active=True, visible=True).order_by(
+            "code"
+        ):
+            field_name = "period_{0}".format(n.pk)
+            field = ControlCombo(
+                n.label,
+                items=PERIODS,
+                changed_event=make_lambda_func(self.configure, notification_pk=n.pk),
+            )
 
             try:
                 un = UserNotificationConf.objects.get(notification_type=n, user=user)
@@ -50,6 +64,6 @@ class UserNotificationsConfigApp(BaseWidget):
         except UserNotificationConf.DoesNotExist:
             un = UserNotificationConf(notification_type=n, user=user)
 
-        field = getattr(self, 'period_{0}'.format(n.pk))
+        field = getattr(self, "period_{0}".format(n.pk))
         un.period = field.value
         un.save()
