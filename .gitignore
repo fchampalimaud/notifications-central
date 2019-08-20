@@ -2,3 +2,7 @@
 *.pyc
 
 notifications_central\.egg-info/
+
+build/
+
+dist/
