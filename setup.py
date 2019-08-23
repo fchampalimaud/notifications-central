@@ -17,12 +17,12 @@ with open('notifications/__init__.py', 'r') as fd:
     content = fd.read()
     version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', content, re.MULTILINE).group(1)
     license = re.search(r'^__license__\s*=\s*[\'"]([^\'"]*)[\'"]', content, re.MULTILINE).group(1)
-if not version: raise RuntimeError('Cannot find version information')
-if not license: raise RuntimeError('Cannot find license information')
+if version is None: raise RuntimeError('Cannot find version information')
+if license is None: raise RuntimeError('Cannot find license information')
 
 setup(
-
     name='notifications-central',
+    url='https://github.com/fchampalimaud/notifications-central.git',
     version=version,
     description="""""",
     author='Ricardo Ribeiro',
